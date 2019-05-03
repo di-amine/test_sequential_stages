@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    options {
+        parallelsAlwaysFailFast()
+    }
     stages {
         stage('Parallel') {
             parallel {
@@ -15,9 +18,6 @@ pipeline {
                 stage('Parallel2') {
                     when {
                         branch 'dev'
-                    }
-                    options {
-                        parallelsAlwaysFailFast()
                     }
                     steps {
                         echo "Parallel 2"
