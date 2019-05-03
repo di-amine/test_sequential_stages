@@ -4,11 +4,21 @@ pipeline {
         stage('Parallel') {
             parallel {
                 stage('Parallel1') {
+                    when {
+                        branch 'master'
+                    }
+                    failFast true
                     steps {
                         echo "Parallel 1"
                     }
                 }
                 stage('Parallel2') {
+                    when {
+                        branch 'dev'
+                    }
+                    options {
+                        parallelsAlwaysFailFast()
+                    }
                     steps {
                         echo "Parallel 2"
                     }
